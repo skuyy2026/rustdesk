@@ -122,7 +122,7 @@ pub const RENDEZVOUS_SERVERS: &[&str] = &["192.168.3.1:21166"];
 pub const RS_PUB_KEY: &str = "N2HJfHm9BCSUSZXYt8q+Qskh2vQLiyCCbDftnpkl0TA=";
 
 pub const RENDEZVOUS_PORT: i32 = 21166;
-pub const RELAY_PORT: i32 = 21117;
+pub const RELAY_PORT: i32 = 21177;
 pub const WS_RENDEZVOUS_PORT: i32 = 21118;
 pub const WS_RELAY_PORT: i32 = 21119;
 
