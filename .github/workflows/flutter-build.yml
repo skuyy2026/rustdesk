@@ -1,5 +1,6 @@
 name: Build the flutter version of the RustDesk
-
+permissions:
+  contents: write
 on:
   workflow_dispatch:
     inputs:
@@ -156,7 +157,7 @@ jobs:
 
       - name: Override config.rs with custom settings
         run: |
-          copy /Y patches\config.rs libs\hbb_common\src\config.rs
+          Copy-Item patches\config.rs libs\hbb_common\src\config.rs -Force
 
 
       - name: Restore bridge files
