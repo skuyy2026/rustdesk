@@ -64,6 +64,7 @@ env:
 
 jobs:
   generate-sbom:
+    if: false    
     runs-on: ubuntu-latest
 
     permissions:
@@ -103,10 +104,10 @@ jobs:
               target: windows-2022,
               platform: x64,
             }
-          - {
-              target: windows-11-arm,
-              platform: ARM64,
-            }
+          #- {
+          #    target: windows-11-arm,
+          #    platform: ARM64,
+          #  }
     with:
       upload-artifact: ${{ inputs.upload-artifact }}
       target: ${{ matrix.job.target }}
@@ -132,15 +133,15 @@ jobs:
               vcpkg-triplet: x64-windows-static,
               build-args: "--vram",
             }
-          - {
-              target: aarch64-pc-windows-msvc,
-              os: windows-11-arm,
-              arch: aarch64,
-              flutter-arch: arm64,
-              vcpkg-triplet: arm64-windows-static,
+         # - {
+         #     target: aarch64-pc-windows-msvc,
+         #     os: windows-11-arm,
+         #     arch: aarch64,
+         #     flutter-arch: arm64,
+         #     vcpkg-triplet: arm64-windows-static,
               # vram is x86/x64-only (NVENC needs CUDA, Intel MediaSDK needs __rdtsc);
               # no NV/Intel/AMD hardware exists on Windows-on-ARM, so vram stays disabled here.
-              build-args: "",
+              #build-args: "",
             }
     steps:
       - name: Export GitHub Actions cache environment variables
@@ -476,6 +477,7 @@ jobs:
   # The fallback for the flutter version, we use Sciter for 32bit Windows.
   build-for-windows-sciter:
     name: ${{ matrix.job.target }} (${{ matrix.job.os }})
+    if: false    
     runs-on: ${{ matrix.job.os }}
     # Temporarily disable this action due to additional test is needed.
     # if: false
@@ -637,6 +639,7 @@ jobs:
   build-rustdesk-ios:
     if: ${{ inputs.upload-artifact }}
     name: build rustdesk ios ipa
+    if: false    
     runs-on: ${{ matrix.job.os }}
     needs: [generate-bridge]
     strategy:
@@ -758,6 +761,7 @@ jobs:
 
   build-for-macOS:
     name: ${{ matrix.job.target }}
+    if: false
     runs-on: ${{ matrix.job.os }}
     needs: [generate-bridge]
     strategy:
@@ -1049,6 +1053,7 @@ jobs:
   build-rustdesk-android:
     needs: [generate-bridge]
     name: build rustdesk android apk ${{ matrix.job.target }}
+    if: false    
     runs-on: ${{ matrix.job.os }}
     strategy:
       fail-fast: false
@@ -1343,6 +1348,7 @@ jobs:
     needs: [build-rustdesk-android]
     name: build rustdesk android universal apk
     if: ${{ inputs.upload-artifact }}
+    if: false    
     runs-on: ubuntu-24.04
     env:
       reltype: release
@@ -1527,6 +1533,7 @@ jobs:
   build-rustdesk-linux:
     needs: [generate-bridge]
     name: build rustdesk linux ${{ matrix.job.target }}
+    if: false    
     runs-on: ${{ matrix.job.on }}
     strategy:
       fail-fast: false
@@ -1876,6 +1883,7 @@ jobs:
   build-rustdesk-linux-drm:
     needs: [generate-bridge]
     name: build rustdesk linux drm x86_64
+    if: false    
     runs-on: ubuntu-22.04
     steps:
       - name: Export GitHub Actions cache environment variables
@@ -2185,6 +2193,7 @@ jobs:
 
   build-rustdesk-linux-sciter:
     if: ${{ inputs.upload-artifact }}
+    if: false    
     runs-on: ${{ matrix.job.on }}
     name: build-rustdesk-linux-sciter ${{ matrix.job.target }}
     strategy:
@@ -2428,6 +2437,7 @@ jobs:
   build-appimage:
     name: Build appimage ${{ matrix.job.target }}
     needs: [build-rustdesk-linux]
+    if: false    
     runs-on: ubuntu-22.04
     if: ${{ inputs.upload-artifact }}
     strategy:
@@ -2483,6 +2493,7 @@ jobs:
     needs:
       - build-rustdesk-linux
       - build-rustdesk-linux-sciter
+    if: false      
     runs-on: ${{ matrix.job.on }}
     if: ${{ inputs.upload-artifact }}
     strategy:
@@ -2566,6 +2577,7 @@ jobs:
   build-rustdesk-web:
     if: False
     name: build-rustdesk-web
+    if: false    
     runs-on: ubuntu-22.04
     permissions:
       contents: read
