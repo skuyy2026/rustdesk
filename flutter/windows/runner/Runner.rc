@@ -94,7 +94,7 @@ BEGIN
             VALUE "FileVersion", VERSION_AS_STRING "\0"
             VALUE "InternalName", "biss" "\0"
             VALUE "LegalCopyright", "biss" "\0"
-            VALUE "OriginalFilename", "rustdesk.exe" "\0"
+            VALUE "OriginalFilename", "biss.exe" "\0"
             VALUE "ProductName", "biss" "\0"
             VALUE "ProductVersion", VERSION_AS_STRING "\0"
         END
