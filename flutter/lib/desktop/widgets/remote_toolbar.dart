@@ -683,6 +683,7 @@ class _RemoteToolbarState extends State<RemoteToolbar> {
 
   @override
   Widget build(BuildContext context) {
+    return const SizedBox.shrink();
     return Obx(() {
       // Wait for initialization to complete to prevent flickering
       if (!widget.state.initialized.value ||
