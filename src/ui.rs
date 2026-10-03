@@ -37,9 +37,6 @@ lazy_static::lazy_static! {
 struct UIHostHandler;
 
 pub fn start(args: &mut [String]) {
-    if !args.is_empty() && args[0] == "--cm" {
-        return;
-    }
     #[cfg(target_os = "macos")]
     crate::platform::delegate::show_dock();
     #[cfg(all(target_os = "linux", feature = "inline"))]
